@@ -6,7 +6,7 @@ CREATE TABLE analysis.tmp_rfm_monetary_value (
 INSERT INTO analysis.tmp_rfm_monetary_value  (
 SELECT 
 	user_id,
-	NTILE(5) over (ORDER BY order_sum desc)
+	NTILE(5) over (ORDER BY order_sum ASC)
 FROM
 (
 -- выборка для исключения пользователя с user_id со значением NULL
@@ -26,5 +26,4 @@ SELECT * FROM
 	FROM orders) AS sm3
 GROUP BY user_id, order_sum) AS sm4
 WHERE user_id IS NOT NULL)  AS sm5
-ORDER BY ntile DESC)
-
+ORDER BY ntile DESC);

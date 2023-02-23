@@ -7,7 +7,7 @@ CREATE TABLE analysis.tmp_rfm_frequency (
 INSERT INTO analysis.tmp_rfm_frequency (
 SELECT 
 	user_id,
-	NTILE(5) over (ORDER BY order_count DESC)
+	NTILE(5) over (ORDER BY order_count ASC)
 FROM (
 
 -- выборка для исключения пользователя с user_id со значением NULL
@@ -30,4 +30,4 @@ FROM (
 		FROM orders) AS frq2
 	 GROUP BY  user_id, order_count) AS frq3
  WHERE user_id IS NOT NULL)  AS frq4
- ORDER BY ntile DESC)
+ ORDER BY ntile DESC);

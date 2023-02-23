@@ -8,7 +8,7 @@ INSERT INTO analysis.tmp_rfm_recency
 (
 SELECT 
 	user_id,
-	NTILE(5) over (ORDER BY last_order_dt desc)
+	NTILE(5) over (ORDER BY last_order_dt ASC)
 FROM (
 -- выборка для исключения пользователя с user_id со значением NULL
 SELECT * FROM
@@ -22,7 +22,7 @@ SELECT * FROM
 	-- выборка пользователей, не совершивших заказов (со статусом closed) и присвоением им значения NULL
 	SELECT * FROM (select 
 	DISTINCT (CASE WHEN user_id NOT IN (SELECT user_id FROM rcn2) THEN user_id END) AS user_id,
-	null::timestamp AS last_order_dt
+	'0001-01-01 00:00:00'::timestamp AS last_order_dt
 	FROM orders) AS rcn3) as rcn4
 WHERE user_id IS NOT NULL) AS rcn5
 ORDER BY ntile DESC);

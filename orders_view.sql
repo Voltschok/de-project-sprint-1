@@ -1,5 +1,4 @@
-DROP VIEW IF EXISTS orders;
-CREATE VIEW orders AS
+CREATE OR REPLACE VIEW analysis.orders AS
 SELECT po.order_id, po.order_ts, po.user_id, po.bonus_payment,
 		po.payment, po.cost, po.bonus_grant, pl.status_id  FROM production.orders po
 JOIN (
