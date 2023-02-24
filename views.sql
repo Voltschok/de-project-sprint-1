@@ -1,16 +1,16 @@
-create view orders as
-select * from production.orders 
+CREATE OR REPLACE VIEW analysis.orders AS
+SELECT * FROM production.orders; 
 
-create view orderstatuses as
-select * from production.orderstatuses 
+CREATE OR REPLACE VIEW  analysis.orderstatuses AS
+SELECT * FROM production.orderstatuses;
+ 
+CREATE OR REPLACE VIEW  analysis.orderstatuslog AS
+SELECT * FROM production.orderstatuslog;
 
-create view orderstatuslog as
-select * from production.orderstatuslog
+CREATE OR REPLACE VIEW  analysis.products AS
+SELECT * FROM production.products;
 
-create view products as
-select * from production.products
-
-create view users as
-select * from production.users 
+CREATE OR REPLACE VIEW  analysis.users AS
+SELECT * FROM production.users; 
 
  
